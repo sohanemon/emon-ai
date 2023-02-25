@@ -1,4 +1,5 @@
 import { Configuration, OpenAIApi } from 'openai';
+import { NextApiResponse } from 'next';
 
 /* ---------------------- setting up configuration --------------------- */
 const configuration = new Configuration({
@@ -9,9 +10,10 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 export async function GET() {
-  return new Response(
-    JSON.stringify({
-      error: 'emon man',
-    })
-  );
+  const result = await openai.createImage({
+    prompt: 'beautiful girl with face',
+    n: 1,
+    size: '1024x1024',
+  });
+  return new Response(result.data.data[0].url);
 }
