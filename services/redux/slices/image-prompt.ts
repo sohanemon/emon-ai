@@ -1,19 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  test: 'lol',
+  inputValue: '',
 };
 
 const imagePrompt = createSlice({
   name: 'image-prompt',
   initialState,
   reducers: {
-    changeTest: (state) => {
-      state.test = 'lol lol';
+    changeInput: (state, { payload }) => {
+      state.inputValue = payload;
     },
   },
 });
 
-export const { changeTest } = imagePrompt.actions;
+export const { changeInput } = imagePrompt.actions;
 
 export default imagePrompt.reducer;

@@ -1,15 +1,27 @@
 'use client';
-import { changeTest } from '@/services/redux/slices/image-prompt';
+import { changeInput } from '@/services/redux/slices/image-prompt';
+import { RootState } from '@/services/redux/store';
 import { Button, Input } from '@material-tailwind/react';
+import { useRef } from 'react';
 import { BiMessageRoundedDots } from 'react-icons/bi';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Page() {
   const dispatch = useDispatch();
+  const inputRef = useRef<any>(null);
+
+  const inputState = useSelector(
+    (state: RootState) => state['image-prompt'].inputValue
+  );
 
   /* ----------------------------- functions ----------------------------- */
   function handleSubmit() {
-    dispatch(changeTest());
+    dispatch(changeInput(inputRef.current.querySelector('input').value));
+    console.log('🛑 ~ Page ~ inputState:', inputState);
+  }
+
+  function handleInputChange() {
+    dispatch(changeInput(inputRef.current.querySelector('input').value));
   }
 
   /* --------------------------------------------------------------------- */
@@ -17,6 +29,8 @@ export default function Page() {
     <div className='grid min-h-screen place-content-center'>
       <div className='w-96'>
         <Input
+          onChange={handleInputChange}
+          ref={inputRef}
           color='gray'
           label='Write prompt'
           icon={<BiMessageRoundedDots />}
