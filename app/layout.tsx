@@ -16,9 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body style={inter.style} className='min-h-screen text-white bg-black'>
+      <body style={inter.style}>
         <MaterialProvider>
-          <ReduxProvider>{children}</ReduxProvider>
+          <ReduxProvider>
+            <main className='min-h-screen text-white bg-black'>{children}</main>
+          </ReduxProvider>
         </MaterialProvider>
       </body>
     </html>

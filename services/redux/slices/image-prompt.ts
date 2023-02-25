@@ -7,9 +7,13 @@ const initialState = {
 const imagePrompt = createSlice({
   name: 'image-prompt',
   initialState,
-  reducers: {},
+  reducers: {
+    changeTest: (state) => {
+      state.test = 'lol lol';
+    },
+  },
 });
 
-export const {} = imagePrompt.actions;
+export const { changeTest } = imagePrompt.actions;
 
 export default imagePrompt.reducer;
