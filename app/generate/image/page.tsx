@@ -4,6 +4,7 @@ import {
   inputLengthSelect,
   inputValueSelect,
 } from '@/services/redux/slices/image-prompt';
+import { fetchImageWithPrompt } from '@/utils/fetch-image';
 import { Button, Input } from '@material-tailwind/react';
 import { BiMessageRoundedDots } from 'react-icons/bi';
 import { MdClear } from 'react-icons/md';
@@ -13,12 +14,13 @@ export default function Page() {
   const dispatch = useDispatch();
 
   const inputValue = useSelector(inputValueSelect);
-  console.log('🛑 ~ Page ~ inputValue:', inputValue);
 
   const inputLength = useSelector(inputLengthSelect);
 
   /* ----------------------------- functions ----------------------------- */
-  function handleSubmit() {}
+  async function handleSubmit() {
+    await fetchImageWithPrompt('dog eating water');
+  }
 
   function handleInputChange(e: React.FormEvent<HTMLInputElement>) {
     dispatch(changeInput((e.target as HTMLInputElement).value));
