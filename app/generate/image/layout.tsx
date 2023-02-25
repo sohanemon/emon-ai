@@ -1,16 +1,8 @@
-export const metadata = {
-  title: 'Image Generation',
-  description: 'Created by SohanEmon',
-};
+export const metadata = { title: 'Image - EmonAi' };
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html lang='en'>
-      <head />
-      <body>{children}</body>
-    </html>
-  );
+  return children;
 }
