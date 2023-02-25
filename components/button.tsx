@@ -1,15 +1,9 @@
 'use client';
 import { Button as TwButton } from '@material-tailwind/react';
 
-export default function Button({
-  children,
-  className,
-}: {
-  children: Children;
-  className?: string;
-}) {
+export default function Button({ children }: Children) {
   return (
-    <TwButton variant='outlined' color='gray' className={className}>
+    <TwButton variant='outlined' color='gray'>
       {children}
     </TwButton>
   );
