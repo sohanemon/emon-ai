@@ -1,1 +1,1 @@
-type Children = React.ReactNode;
+type Children = { children: React.ReactNode };
