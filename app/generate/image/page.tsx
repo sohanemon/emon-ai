@@ -10,10 +10,13 @@ import {
 import { fetchImageWithPrompt } from '@/utils/fetch-image';
 import { Button, Input } from '@material-tailwind/react';
 import Image from 'next/image';
+import { useState } from 'react';
 import { BiMessageRoundedDots } from 'react-icons/bi';
 import { MdClear } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { imageSrcSelect } from '../../../services/redux/slices/image-prompt';
+
+const LABEL = 'A cow flying in the sky';
 
 export default function Page() {
   const dispatch = useDispatch();
@@ -22,6 +25,9 @@ export default function Page() {
   const imageSrc = useSelector(imageSrcSelect);
   const inputLength = useSelector(inputLengthSelect);
   const isImageFetching = useSelector(isImageFetchingSelect);
+
+  /* ---------------------------- local states --------------------------- */
+  const [label, setLabel] = useState(LABEL);
 
   /* ----------------------------- functions ----------------------------- */
   async function handleSubmit() {
@@ -52,7 +58,8 @@ export default function Page() {
         <Input
           onInput={(e) => handleInputChange(e)}
           color='gray'
-          label='Write prompt'
+          label={label}
+          onFocus={() => setLabel('Write a prompt')}
           icon={
             !inputLength ? (
               <BiMessageRoundedDots />
@@ -65,7 +72,7 @@ export default function Page() {
           }
         />
         <Button
-          disabled={isImageFetching}
+          disabled={isImageFetching || !inputLength}
           onClick={handleSubmit}
           color='green'
           className='w-full mt-2'
