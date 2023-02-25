@@ -2,13 +2,18 @@
 import { changeInput } from '@/services/redux/slices/image-prompt';
 import { RootState } from '@/services/redux/store';
 import { Button, Input } from '@material-tailwind/react';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { BiMessageRoundedDots } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function Page() {
   const dispatch = useDispatch();
   const inputRef = useRef<any>(null);
+  let inputElement: any;
+  useEffect(() => {
+    inputElement = inputRef.current.querySelector('input');
+    return () => {};
+  }, []);
 
   const inputState = useSelector(
     (state: RootState) => state['image-prompt'].inputValue
@@ -16,12 +21,12 @@ export default function Page() {
 
   /* ----------------------------- functions ----------------------------- */
   function handleSubmit() {
-    dispatch(changeInput(inputRef.current.querySelector('input').value));
+    dispatch(changeInput(inputElement?.value));
     console.log('🛑 ~ Page ~ inputState:', inputState);
   }
 
   function handleInputChange() {
-    dispatch(changeInput(inputRef.current.querySelector('input').value));
+    dispatch(changeInput(inputElement.value));
   }
 
   /* --------------------------------------------------------------------- */
@@ -29,7 +34,7 @@ export default function Page() {
     <div className='grid min-h-screen place-content-center'>
       <div className='w-96'>
         <Input
-          onChange={handleInputChange}
+          onInput={handleInputChange}
           ref={inputRef}
           color='gray'
           label='Write prompt'
