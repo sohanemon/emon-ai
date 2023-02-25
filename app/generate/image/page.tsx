@@ -1,25 +1,24 @@
 'use client';
-import { changeInput } from '@/services/redux/slices/image-prompt';
-import { RootState } from '@/services/redux/store';
+import {
+  changeInput,
+  inputLengthSelect,
+  inputValueSelect,
+} from '@/services/redux/slices/image-prompt';
 import { Button, Input } from '@material-tailwind/react';
-import { useRef, useEffect, ReactElement, FormEvent } from 'react';
 import { BiMessageRoundedDots } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function Page() {
   const dispatch = useDispatch();
 
-  const inputState = useSelector(
-    (state: RootState) => state['image-prompt'].inputValue
-  );
-  console.log('🛑 ~ Page ~ inputState:', inputState);
+  const inputValue = useSelector(inputValueSelect);
+  const inputLength = useSelector(inputLengthSelect);
 
-  /* ------------ adding event listener for material tailwind ------------ */
   /* ----------------------------- functions ----------------------------- */
   function handleSubmit() {}
 
   function handleInputChange(e: React.FormEvent<HTMLInputElement>) {
-    console.log((e.target as HTMLInputElement).value);
+    dispatch(changeInput((e.target as HTMLInputElement).value));
   }
 
   /* --------------------------------------------------------------------- */
