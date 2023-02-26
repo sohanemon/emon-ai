@@ -8,6 +8,8 @@ import {
   updateImage,
   updateImageFetching,
 } from '@/services/redux/slices/image-prompt';
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 import { fetchImageWithPrompt } from '@/utils/fetch-image';
 import { Button, Input } from '@material-tailwind/react';
 import Image from 'next/image';
@@ -16,6 +18,7 @@ import { BiMessageRoundedDots } from 'react-icons/bi';
 import { MdClear } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { imageSrcSelect } from '../../../services/redux/slices/image-prompt';
+import useChangeContentBg from '@/hooks/use-change-content-bg';
 
 const LABEL = 'A cow flying in the sky';
 
@@ -26,10 +29,12 @@ export default function Page() {
   const imageSrc = useSelector(imageSrcSelect);
   const inputLength = useSelector(inputLengthSelect);
   const isImageFetching = useSelector(isImageFetchingSelect);
-
   /* ---------------------------- local states --------------------------- */
   const [label, setLabel] = useState(LABEL);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+  // custom hooks
+  useChangeContentBg(isImageLoaded);
 
   /* ----------------------------- functions ----------------------------- */
   async function handleSubmit() {
@@ -93,7 +98,7 @@ export default function Page() {
         {!isImageLoaded && imageSrc && <DnaLoader />}
 
         {imageSrc && (
-          <>
+          <Zoom>
             <Image
               onLoadingComplete={() => setIsImageLoaded(true)}
               src={imageSrc}
@@ -102,7 +107,7 @@ export default function Page() {
               height={1024}
               className='w-full rounded-lg'
             />
-          </>
+          </Zoom>
         )}
       </div>
     </div>
