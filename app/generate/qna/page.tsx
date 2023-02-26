@@ -12,21 +12,7 @@ export default function Page() {
             earum praesentium adipisci, ipsa provident dicta qui corporis minus?
             Accusantium, architecto?
           </div>
-          <Textarea
-            color='gray'
-            label={'Ask your question'}
-
-            // icon={
-            //   !inputLength ? (
-            //     <BiMessageRoundedDots />
-            //   ) : (
-            //     <MdClear
-            //       onClick={(e) => handleClear(e)}
-            //       className='cursor-pointer'
-            //     />
-            //   )
-            // }
-          />
+          <Textarea color='gray' label={'Ask your question'} />
           <Button color='green' className='w-full mt-2'>
             Submit
           </Button>
