@@ -25,7 +25,7 @@ export default function TopBar() {
       <Typography
         variant='small'
         color='white'
-        className='p-1 font-normal hover:font-semibold duration-600 transition-all'
+        className='p-1 font-normal hover:text-gray-300'
       >
         <Link href='/generate/image' className='flex items-center'>
           Image
@@ -40,7 +40,7 @@ export default function TopBar() {
         <div className='container flex items-center justify-between mx-auto text-white'>
           <Typography
             variant='small'
-            className='mr-4 cursor-pointer py-1.5 font-normal'
+            className='mr-4 cursor-pointer py-1.5 font-bold tracking-[5px]'
           >
             <Link href={'/'}>Emon Ai</Link>
           </Typography>
