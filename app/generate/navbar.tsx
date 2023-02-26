@@ -31,6 +31,15 @@ export default function TopBar() {
           Image
         </Link>
       </Typography>
+      <Typography
+        variant='small'
+        color='white'
+        className='p-1 font-normal hover:text-gray-300'
+      >
+        <Link href='/generate/qna' className='flex items-center'>
+          Q/A
+        </Link>
+      </Typography>
     </ul>
   );
 
