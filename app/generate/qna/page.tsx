@@ -2,6 +2,7 @@
 import fetchAnswer from '@/utils/fetch-answer';
 import { Button, Textarea } from '@material-tailwind/react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import {
   answerSelect,
   questionSelect,
@@ -15,11 +16,17 @@ export default function Page() {
   /* --------------------------- global states --------------------------- */
   const answer = useSelector(answerSelect);
   const question = useSelector(questionSelect);
-  console.log('🛑 ~ Page ~ answer:', answer);
+
+  /* ---------------------------- local states --------------------------- */
+  const [isLoading, setIsLoading] = useState(false);
 
   /* ----------------------------- functions ----------------------------- */
   async function handleSubmit() {
-    dispatch(setAnswer(await fetchAnswer(question)));
+    setIsLoading(true);
+    fetchAnswer(question).then((res) => {
+      dispatch(setAnswer(res));
+      setIsLoading(false);
+    });
   }
 
   function handleInput(e: React.FormEvent<HTMLTextAreaElement>) {
@@ -32,14 +39,23 @@ export default function Page() {
       <div className='grid justify-center pt-0 px:4 md:px-20'>
         <div className='w-[calc(100vw-100px)] mx-auto h-[calc(100vh-120px)] flex flex-col justify-end'>
           <div className='grow overflow-y-scroll overflow-x-hidden mb-6 scrollbar-thin'>
-            <pre className='whitespace-pre-wrap'>{answer}</pre>
+            {isLoading ? (
+              ''
+            ) : (
+              <pre className='whitespace-pre-wrap'>{answer}</pre>
+            )}
           </div>
           <Textarea
             onInput={(e) => handleInput(e)}
             color='gray'
             label={'Ask your question'}
           />
-          <Button onClick={handleSubmit} color='green' className='w-full mt-2'>
+          <Button
+            disabled={isLoading}
+            onClick={handleSubmit}
+            color='green'
+            className='w-full mt-2'
+          >
             Submit
           </Button>
         </div>
