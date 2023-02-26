@@ -19,7 +19,7 @@ export default function Page() {
     <>
       <div className='grid justify-center pt-10'>
         <div className='w-96 h-[calc(100vh-120px)] flex flex-col justify-end'>
-          <div className='grow '>
+          <div className='grow overflow-y-scroll overflow-x-hidden'>
             <span>{'> '}</span>
             {answer}
           </div>
