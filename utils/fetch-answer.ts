@@ -1,9 +1,9 @@
 import openai from '@/lib/open-ai';
 
-export default async function fetchAnswer() {
+export default async function fetchAnswer(text: string) {
   const completion = await openai.createCompletion({
     model: 'text-davinci-003',
-    prompt: 'explain this step by step: what is javascript',
+    prompt: `explain this step by step: ${text}`,
     temperature: 0.9,
     max_tokens: 1000,
     frequency_penalty: 0,
