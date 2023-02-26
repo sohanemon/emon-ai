@@ -6,6 +6,7 @@ import {
   answerSelect,
   questionSelect,
   setAnswer,
+  setQuestion,
 } from '../../../services/redux/slices/qna-slice';
 
 export default function Page() {
@@ -21,14 +22,16 @@ export default function Page() {
     dispatch(setAnswer(await fetchAnswer(question)));
   }
 
-  function handleInput(e: React.FormEvent<HTMLTextAreaElement>) {}
+  function handleInput(e: React.FormEvent<HTMLTextAreaElement>) {
+    const target = e.target as HTMLTextAreaElement;
+    dispatch(setQuestion(target.value));
+  }
 
   return (
     <>
-      <div className='grid justify-center pt-10 px:4 md:px-20'>
-        <div className='w-full h-[calc(100vh-120px)] flex flex-col justify-end'>
-          <div className='grow overflow-y-scroll overflow-x-hidden my-3 scrollbar-thin'>
-            <span>{'> '}</span>
+      <div className='grid justify-center pt-0 px:4 md:px-20'>
+        <div className='w-[calc(100vw-100px)] mx-auto h-[calc(100vh-120px)] flex flex-col justify-end'>
+          <div className='grow overflow-y-scroll overflow-x-hidden mb-6 scrollbar-thin'>
             <pre className='whitespace-pre-wrap'>{answer}</pre>
           </div>
           <Textarea
