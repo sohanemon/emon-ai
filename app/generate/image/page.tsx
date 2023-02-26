@@ -45,13 +45,16 @@ export default function Page() {
     dispatch(changeInput((e.target as HTMLInputElement).value));
     dispatch(updateImage(''));
     dispatch(updateImageFetching(false));
+    setIsImageLoaded(false);
   }
 
   function handleClear(e: React.MouseEvent<SVGElement, MouseEvent>) {
     // @ts-ignore
     e.target.parentElement.parentElement.querySelector('input').value = '';
     dispatch(changeInput(''));
+    setIsImageLoaded(false);
     dispatch(updateImageFetching(false));
+    dispatch(updateImage(''));
   }
 
   /* --------------------------------------------------------------------- */
@@ -83,7 +86,11 @@ export default function Page() {
           Submit
         </Button>
 
-        {isImageLoaded ? <hr className='my-5' /> : <DnaLoader />}
+        {isImageLoaded && <hr className='my-5' />}
+
+        {isImageFetching && <DnaLoader />}
+
+        {!isImageLoaded && imageSrc && <DnaLoader />}
 
         {imageSrc && (
           <>
