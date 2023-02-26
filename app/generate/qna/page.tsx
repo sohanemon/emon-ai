@@ -9,6 +9,8 @@ import {
   setAnswer,
   setQuestion,
 } from '../../../services/redux/slices/qna-slice';
+import DnaLoader from '@/components/dna-loader';
+import { Comment } from 'react-loader-spinner';
 
 export default function Page() {
   const dispatch = useDispatch();
@@ -40,7 +42,19 @@ export default function Page() {
         <div className='w-[calc(100vw-100px)] mx-auto h-[calc(100vh-120px)] flex flex-col justify-end'>
           <div className='grow overflow-y-scroll overflow-x-hidden mb-6 scrollbar-thin'>
             {isLoading ? (
-              ''
+              <div className='flex items-center mt-10 gap-3'>
+                <span>Emon Ai is thinking </span>
+                <Comment
+                  visible={true}
+                  height='40'
+                  width='40'
+                  ariaLabel='content-loading'
+                  wrapperStyle={{}}
+                  wrapperClass='comment-wrapper'
+                  color='#fff'
+                  backgroundColor='#black'
+                />
+              </div>
             ) : (
               <pre className='whitespace-pre-wrap'>{answer}</pre>
             )}
