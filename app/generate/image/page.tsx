@@ -29,9 +29,11 @@ export default function Page() {
 
   /* ---------------------------- local states --------------------------- */
   const [label, setLabel] = useState(LABEL);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   /* ----------------------------- functions ----------------------------- */
   async function handleSubmit() {
+    setIsImageLoaded(false);
     dispatch(updateImageFetching(true));
     fetchImageWithPrompt(inputValue).then((res) => {
       dispatch(updateImage(res));
@@ -80,11 +82,13 @@ export default function Page() {
         >
           Submit
         </Button>
+
+        {isImageLoaded ? <hr className='my-5' /> : <DnaLoader />}
+
         {imageSrc && (
           <>
-            <hr className='my-5' />
             <Image
-              onLoadingComplete={() => console.log('awesome loaded')}
+              onLoadingComplete={() => setIsImageLoaded(true)}
               src={imageSrc}
               alt=''
               width={1024}
@@ -93,7 +97,6 @@ export default function Page() {
             />
           </>
         )}
-        {isImageFetching && <DnaLoader />}
       </div>
     </div>
   );
