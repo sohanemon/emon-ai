@@ -1,4 +1,5 @@
 'use client';
+import DnaLoader from '@/components/dna-loader';
 import {
   changeInput,
   inputLengthSelect,
@@ -83,6 +84,7 @@ export default function Page() {
           <>
             <hr className='my-5' />
             <Image
+              onLoadingComplete={() => console.log('awesome loaded')}
               src={imageSrc}
               alt=''
               width={1024}
@@ -91,6 +93,7 @@ export default function Page() {
             />
           </>
         )}
+        {isImageFetching && <DnaLoader />}
       </div>
     </div>
   );
