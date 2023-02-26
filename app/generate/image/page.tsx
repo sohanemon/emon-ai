@@ -59,7 +59,7 @@ export default function Page() {
 
   /* --------------------------------------------------------------------- */
   return (
-    <div className='grid justify-center min-h-screen pt-10'>
+    <div className='grid justify-center pt-10'>
       <div className='w-96'>
         <Input
           onInput={(e) => handleInputChange(e)}
