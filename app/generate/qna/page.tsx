@@ -1,16 +1,15 @@
 'use client';
 import fetchAnswer from '@/utils/fetch-answer';
 import { Button, Textarea } from '@material-tailwind/react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { Comment } from 'react-loader-spinner';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   answerSelect,
   questionSelect,
   setAnswer,
   setQuestion,
 } from '../../../services/redux/slices/qna-slice';
-import DnaLoader from '@/components/dna-loader';
-import { Comment } from 'react-loader-spinner';
 
 export default function Page() {
   const dispatch = useDispatch();
