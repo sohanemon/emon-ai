@@ -41,7 +41,7 @@ export default function Page() {
         <div className='w-[calc(100vw-100px)] mx-auto h-[calc(100vh-120px)] flex flex-col justify-end'>
           <div className='grow overflow-y-scroll overflow-x-hidden mb-6 scrollbar-thin'>
             {isLoading ? (
-              <div className='flex items-center mt-10 gap-3'>
+              <div className='flex mt-10 gap-3'>
                 <span>Emon Ai is thinking </span>
                 <Comment
                   visible={true}

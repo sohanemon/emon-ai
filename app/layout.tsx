@@ -19,7 +19,10 @@ export default function RootLayout({
       <body style={inter.style}>
         <MaterialProvider>
           <ReduxProvider>
-            <main className='min-h-screen text-white bg-black'>{children}</main>
+            {/* #todo: fix scrollbar bug */}
+            <main className='min-h-screen text-white bg-black [&_*]:scrollbar-thin'>
+              {children}
+            </main>
           </ReduxProvider>
         </MaterialProvider>
       </body>
