@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+  width: 0;
+}
 body > main > div > div > div.relative.w-full.min-w-\[200px\] {
   overflow: visible;
 }
