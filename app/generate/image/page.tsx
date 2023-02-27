@@ -65,7 +65,7 @@ export default function Page() {
   /* --------------------------------------------------------------------- */
   return (
     <div className='grid justify-center pt-10'>
-      <div className='w-96'>
+      <div className='w-96 overflow-visible pt-1'>
         <Input
           onInput={(e) => handleInputChange(e)}
           color='gray'
