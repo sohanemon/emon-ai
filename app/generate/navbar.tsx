@@ -45,7 +45,7 @@ export default function TopBar() {
 
   return (
     <section className='pt-3 px-5'>
-      <Navbar className='max-w-screen-xl px-4 py-2 mx-auto bg-transparent lg:px-8 border-none shadow-sm shadow-gray-300 rounded-t-none '>
+      <Navbar className='max-w-screen-xl px-4 py-2 mx-auto bg-transparent lg:px-8 border-none shadow-sm shadow-gray-900 rounded-t-none mb-1'>
         <div className='container flex items-center justify-between mx-auto text-white'>
           <Typography
             variant='small'
